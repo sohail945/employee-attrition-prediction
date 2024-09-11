@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attrition Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .row label {
+            flex-basis: 45%;
+        }
+
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 5px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Employee Attrition Prediction</h2>
+        <form action="/" method="POST">
+            <div class="row">
+                <label>
+                    Satisfaction Level:
+                    <input type="number" step="0.01" name="satisfaction_level" required min="0" max="1">
+                </label>
+                <label>
+                    Last Performance Rating:
+                    <input type="number" step="0.01" name="last_performance_rating" required min="0" max="1">
+                </label>
+            </div>
+
+            <div class="row">
+                <label>
+                    Number of Projects:
+                    <input type="number" name="number_of_projects" required>
+                </label>
+                <label>
+                    Avg Monthly Hours:
+                    <input type="number" name="avg_monthly_hours" required>
+                </label>
+            </div>
+
+            <div class="row">
+                <label>
+                    Years at Company:
+                    <input type="number" step="1.0" name="years_at_company" required>
+                </label>
+                <label>
+                    Had Work Accident:
+                    <select name="had_work_accident" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="row">
+                <label>
+                    Promoted in Last 5 Years:
+                    <select name="promoted_in_last_5_years" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </label>
+                <label>
+                    Department:
+                    <select name="department" required>
+                        <option value="0">Sales</option>
+                        <option value="1">Support</option>
+                        <option value="2">Technical</option>
+                        <option value="3">HR</option>
+                        <option value="4">Accounting</option>
+                        <option value="5">Management</option>
+                        <option value="6">IT</option>
+                        <option value="7">Marketing</option>
+                        <option value="8">RandD</option>
+                        <option value="9">Product Management</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="row">
+                <label>
+                    Salary Level:
+                    <select name="salary" required>
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
+                    </select>
+                </label>
+            </div>
+
+            <input type="submit" value="Predict">
+
+            {% if prediction %}
+            <div class="result">
+                <strong>Prediction:</strong> {{ prediction }}
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
